@@ -1,19 +1,19 @@
 seed_everything: true
 trainer:
   devices:
-  - 0
+  # - 0
   # - 1
   # - 2
-  # - 3
+  - 3
   # accumulate_grad_batches: 4
   accelerator: gpu
-  precision: 16
+  precision: 32
   strategy: ddp_sharded
   gradient_clip_val: 1.0
   max_epochs: 100
 model:
-  d: 64
+  d: 128
 data:
   image_size: 512
-  batch_size: 32
+  batch_size: 16
   num_workers: 8
