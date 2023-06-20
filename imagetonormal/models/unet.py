@@ -45,7 +45,8 @@ class UNet(nn.Module):
         self.deconv6_bn = nn.BatchNorm2d(d * 2)
         self.deconv7 = nn.Conv2d(d * 2 * 2, d, 3, 1, 0)
         self.deconv7_bn = nn.BatchNorm2d(d)
-        self.deconv8 = nn.Sequential(nn.Conv2d(d * 2, out_channels, 3, 1, 0), nn.Tanh())
+        self.last_conv = nn.Conv2d(d * 2, out_channels, 3, 1, 0)
+        self.deconv8 = nn.Sequential(self.last_conv, nn.Tanh())
 
         # self.deconv1 = nn.ConvTranspose2d(d * 8, d * 8, 4, 2, 1)
         # self.deconv1_bn = nn.BatchNorm2d(d * 8)
@@ -66,6 +67,9 @@ class UNet(nn.Module):
         # )
 
         self.weight_init(mean=0.0, std=0.02)
+
+    def get_last_layer(self):
+        return self.last_conv
 
     # weight_init
     def weight_init(self, mean, std):
