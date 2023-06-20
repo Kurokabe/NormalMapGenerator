@@ -1,0 +1,21 @@
+#version: "3.3"
+
+services:
+  assignment1:
+    # you can change this to whatever you want.
+    container_name: assignment1
+    build:
+      context: ./
+      dockerfile: ./Dockerfile_assignment1
+      shm_size: '100gb'
+    shm_size: '100gb'
+    volumes:
+      - "./:/Assignment1"
+    tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
