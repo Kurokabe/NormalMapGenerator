@@ -150,10 +150,10 @@ class Module(pl.LightningModule):
         self.sample_y_hat = self.sample_y_hat[:16]
 
         grid_real = torchvision.utils.make_grid(
-            self.sample_y, nrow=4, normalize=True, value_range=(0, 1)
+            self.sample_y, nrow=4, normalize=True, value_range=(-1, 1)
         )
         grid_fake = torchvision.utils.make_grid(
-            self.sample_y_hat, nrow=4, normalize=True, value_range=(0, 1)
+            self.sample_y_hat, nrow=4, normalize=True, value_range=(-1, 1)
         )
 
         self.logger.experiment.add_image("images/y", grid_real, self.current_epoch)
@@ -162,14 +162,13 @@ class Module(pl.LightningModule):
     def configure_optimizers(self):
         opt_unet = torch.optim.Adam(
             self.model.parameters(),
-            lr=1e-4,
+            lr=5e-4,
             betas=(0.5, 0.9),
         )
 
         opt_disc = torch.optim.Adam(
             self.discriminator.parameters(),
-            lr=1e-4,
+            lr=5e-4,
             betas=(0.5, 0.9),
-            # eps=1e-6,
         )
         return [opt_unet, opt_disc], []
