@@ -48,24 +48,6 @@ class UNet(nn.Module):
         self.last_conv = nn.Conv2d(d * 2, out_channels, 3, 1, 0)
         self.deconv8 = nn.Sequential(self.last_conv, nn.Tanh())
 
-        # self.deconv1 = nn.ConvTranspose2d(d * 8, d * 8, 4, 2, 1)
-        # self.deconv1_bn = nn.BatchNorm2d(d * 8)
-        # self.deconv2 = nn.ConvTranspose2d(d * 8 * 2, d * 8, 4, 2, 1)
-        # self.deconv2_bn = nn.BatchNorm2d(d * 8)
-        # self.deconv3 = nn.ConvTranspose2d(d * 8 * 2, d * 8, 4, 2, 1)
-        # self.deconv3_bn = nn.BatchNorm2d(d * 8)
-        # self.deconv4 = nn.ConvTranspose2d(d * 8 * 2, d * 8, 4, 2, 1)
-        # self.deconv4_bn = nn.BatchNorm2d(d * 8)
-        # self.deconv5 = nn.ConvTranspose2d(d * 8 * 2, d * 4, 4, 2, 1)
-        # self.deconv5_bn = nn.BatchNorm2d(d * 4)
-        # self.deconv6 = nn.ConvTranspose2d(d * 4 * 2, d * 2, 4, 2, 1)
-        # self.deconv6_bn = nn.BatchNorm2d(d * 2)
-        # self.deconv7 = nn.ConvTranspose2d(d * 2 * 2, d, 4, 2, 1)
-        # self.deconv7_bn = nn.BatchNorm2d(d)
-        # self.deconv8 = nn.Sequential(
-        #     nn.ConvTranspose2d(d * 2, out_channels, 4, 2, 1), nn.Tanh()
-        # )
-
         self.weight_init(mean=0.0, std=0.02)
 
     def get_last_layer(self):

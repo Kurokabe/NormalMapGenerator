@@ -13,7 +13,7 @@ RUN apt-get -y upgrade
 RUN python3 -m pip install --upgrade pip
 
 # Setup environment
-ENV PROJECT_DIR=/Assignment1
+ENV PROJECT_DIR=/NormalMapGenerator
 WORKDIR $PROJECT_DIR
 COPY requirements.txt $PROJECT_DIR/requirements.txt
 

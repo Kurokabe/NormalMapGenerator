@@ -1,16 +1,16 @@
 #version: "3.3"
 
 services:
-  assignment1:
+  normal_map_generator:
     # you can change this to whatever you want.
-    container_name: assignment1
+    container_name: normal_map_generator
     build:
       context: ./
-      dockerfile: ./Dockerfile_assignment1
+      dockerfile: ./Dockerfile
       shm_size: '100gb'
     shm_size: '100gb'
     volumes:
-      - "./:/Assignment1"
+      - "./:/NormalMapGenerator"
     tty: true
     deploy:
       resources:
